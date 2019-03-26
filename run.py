@@ -2,10 +2,20 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/')             
 def index():
-   return "<h1>Hello There!</h1>"
+    """ Main page with instructions """
+    return "To send a message use /USERNAME/MESSAGE"
 
+
+"""If we use angle brackets <> content inside gets treated as variable"""
+@app.route('/<username>')
+def user(username):
+    return "Hi " + username
+
+@app.route('/<username>/<message>')
+def send_message(username, message):
+    return "{0} : {1}".format(username, message)
 
 if __name__ == '__main__':
     app.run(debug=True)
