@@ -10,13 +10,32 @@
     
     <h1>Welcome, {{ username }}</h1>
     
+    <form method="POST">
+        <textarea cols="50" rows="4" id="message" name="message"> </textarea>
+        <br>
+        <button>Send message</button>
+    </form>
+
     {% for message in chat_messages %}
         <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p>
     {% endfor %}
 
     <!--This script below will refresh the page every 5 seconds-->
     <script>
+
+        let textbox = document.getElementById("message")
         let timer = setTimeout(function () { location.reload() }, 5000)
+
+        //whenever a key is pressed in the textbox
+       textbox.onkeydown = function (e) {
+
+            clearTimeout(timer)
+
+            timer = setTimeout(function () {
+                location.reload();
+            }, 5000)
+
+        }
     </script>
 
 </body>
