@@ -9,6 +9,15 @@
 <body>
     
     <h1>Welcome, {{ username }}</h1>
-    {{ chat_messages }}
+    
+    {% for message in chat_messages %}
+        <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p>
+    {% endfor %}
+
+    <!--This script below will refresh the page every 5 seconds-->
+    <script>
+        let timer = setTimeout(function () { location.reload() }, 5000)
+    </script>
+
 </body>
 </html>
